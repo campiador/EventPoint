@@ -1,11 +1,12 @@
 from event import Event
 class Communication(Event):
 
-    def __init__(self, number, producer_thread, producer_event, address_range):
-        Event.__init__(self, number)
+    def __init__(self, eventNumber, threadId, producer_thread, producer_event, address_range_start, address_range_end):
+        Event.__init__(self, eventNumber, threadId)
         self.producer_thread = producer_thread
         self.producer_event = producer_event
-        self.address_range = address_range
+        self.address_range_start = address_range_start
+        self.address_range_end = address_range_end
 
     def getProducerThread(self):
         return self.producer_thread
@@ -13,5 +14,8 @@ class Communication(Event):
     def getProducerEvent(self):
         return self.producer_event
 
-    def getAddressRange(self):
-        return self.address_range
+    def getAddressRangeStart(self):
+        return self.address_range_start
+
+    def getAddressRangeEnd(self):
+        return self.address_range_end

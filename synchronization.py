@@ -22,13 +22,13 @@
 from event import Event
 class Synchronization(Event):
 
-    def __init__(self, number, pthread_call_type, address_of_synchronization_structure):
-        Event.__init__(self, number)
+    def __init__(self, eventNumber, threadId, pthread_call_type, address_of_synchronization_structure):
+        Event.__init__(self, eventNumber, threadId)
         self.pthread_call_type = pthread_call_type
         self.address_of_synchronization_structure = address_of_synchronization_structure
 
     def getPthreadCallType(self):
         return self.pthread_call_type
 
-    def getSyncStrucAddress(self):
+    def getSyncStructAddress(self):
         return self.address_of_synchronization_structure

@@ -1,10 +1,14 @@
 class Event(object):
 
-    def __init__(self, number):
-        self.number = number
+    def __init__(self, eventNumber, threadId):
+        self.eventNumber = eventNumber
+        self.threadId = threadId
 
-    def getNumber(self):
-        return self.number
+    def getEventNumber(self):
+        return self.eventNumber
+
+    def getThreadId(self):
+        return self.threadId
 
     def __str__(self):
-        return "Event number is %s" % (self.number)
+        return "Event number is %s" % (self.eventNumber)
