@@ -27,14 +27,15 @@ def main():
             # print (line)   #for line in f:
             createEvent(line)
 
-
         #    print line
         f.close()
+
+    print(eventGraph.nodes())
 
 def createEvent(strEventLine):
     strEventLine=strEventLine.replace(",", " ")
     splittedEventArray=strEventLine.split(" ")
-    print(splittedEventArray)
+    # print(splittedEventArray)
 
     if (("$" in strEventLine) or ("*" in strEventLine)):
         print("COMPUTATION EVENT")
@@ -58,6 +59,7 @@ main()
 # #NEEDSWORK
 # define findBarrier(thread1, thread2):
 #     for event1 in thread1
+
 #         if(event1.instanceOf(communication) && event1.getPthreadCallType == 5)
 #             for event2 in thread2
 #                 if(event1.instanceOf(communication) && getPThreadCallType == 5)

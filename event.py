@@ -1,3 +1,5 @@
+# TODO: make object hashable
+
 class Event(object):
 
     def __init__(self, eventNumber, threadId):
