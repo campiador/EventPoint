@@ -1,4 +1,6 @@
-# TODO: make object hashable
+# TODO: make object hashable, then print graph
+#TODO: Graph edges
+#TODO: Read generic number of files, maybe from varargs, maybe calculate yourself
 
 class Event(object):
 
