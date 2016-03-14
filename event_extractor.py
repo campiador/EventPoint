@@ -14,16 +14,20 @@ from computation import Computation
 from event import Event;
 from synchronization import Synchronization
 
+THREAD_COUNT=2
 
 eventGraph=nx.Graph();
 
-
 def main():
     parse_threads()#saves results in eventGraph
+    print("finished parsing")
     print(eventGraph.nodes())
+    # eventGraph.nodes()
+    # print(eventGraph.size())
+
 
 def parse_threads():
-    for i in range(1, 3):
+    for i in range(1, THREAD_COUNT+1):
         f = open('thread%d' % i, 'r')
         print ("openning file %d " % i)
         count=0
@@ -46,9 +50,11 @@ def createEvent(strEventLine):
 
     if (("$" in strEventLine) or ("*" in strEventLine)):
         print("COMPUTATION EVENT")
-        eventGraph.add_node(Computation(splittedEventArray[0], splittedEventArray[1], splittedEventArray[2],
+        tempCompEv=Computation(splittedEventArray[0], splittedEventArray[1], splittedEventArray[2],
                                         splittedEventArray[3], splittedEventArray[4], splittedEventArray[5],
-                                        splittedEventArray[6], splittedEventArray[7], splittedEventArray[8]))
+                                        splittedEventArray[6], splittedEventArray[7], splittedEventArray[8])
+        # print(tempCompEv)
+        eventGraph.add_node(tempCompEv)
     elif("^" in strEventLine):
         print ("SYNCHRONIZATION EVENT")
         eventGraph.add_node(Synchronization(splittedEventArray[0], splittedEventArray[1], splittedEventArray[3],
@@ -60,14 +66,19 @@ def createEvent(strEventLine):
     else:
         # FIXME: Separate no-address comps from truly unkown cases.
         print("Unknown event type in line, probably communication with no address")
-        
+
+def subGraphOf(nodes):
+
+    return  eventGraph.subgraph(nodes)
+
 
 main()
+
+
 #
 # #NEEDSWORK
 # define findBarrier(thread1, thread2):
 #     for event1 in thread1
-
 #         if(event1.instanceOf(communication) && event1.getPthreadCallType == 5)
 #             for event2 in thread2
 #                 if(event1.instanceOf(communication) && getPThreadCallType == 5)
