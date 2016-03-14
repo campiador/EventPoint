@@ -1,6 +1,12 @@
 #Event Extractor by Behnam Heydarshahi
 #For tracing, we need to traverese through multiple threads, for that purpose, we have producer events in input
 #which means we have to back-traverse.
+#TODO: Parse flow navigation
+#TODO: Read generic number of files, maybe from varargs, maybe calculate yourself
+#TODO: Communications-->Edges in graph, do we wanna keep them? Because there
+#  are already available in the nodes.
+#TODO: Print out the content of the nodes
+
 import networkx as nx;
 
 from communication import Communication
