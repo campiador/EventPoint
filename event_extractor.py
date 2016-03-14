@@ -1,6 +1,6 @@
 #Event Extractor by Behnam Heydarshahi
-#For tracing, we need to traverese through multiple threads, for that purpose, we have producer events in input
-#which means we have to back-traverse.
+#For tracing, we need to traverese through multiple threads, for that purpose,
+#  we have producer events in input which means we have to back-traverse.
 #TODO: Parse flow navigation
 #TODO: Read generic number of files, maybe from varargs, maybe calculate yourself
 #TODO: Communications-->Edges in graph, do we wanna keep them? Because there
@@ -14,29 +14,30 @@ from computation import Computation
 from event import Event;
 from synchronization import Synchronization
 
+
 eventGraph=nx.Graph();
 
 
 def main():
+    parse_threads()#saves results in eventGraph
+    print(eventGraph.nodes())
 
-    for i in range(1, 2):
-        f = open('thread2', 'r')
-
+def parse_threads():
+    for i in range(1, 3):
+        f = open('thread%d' % i, 'r')
+        print ("openning file %d " % i)
         count=0
         #line = f.readline()
         for line in f:
             e = Event(line, 0);
             # print (e)
             count+=1
-
             # print("line {}:".format(count))
             # print (line)   #for line in f:
             createEvent(line)
-
         #    print line
         f.close()
 
-    print(eventGraph.nodes())
 
 def createEvent(strEventLine):
     strEventLine=strEventLine.replace(",", " ")
@@ -57,7 +58,8 @@ def createEvent(strEventLine):
         eventGraph.add_node(Communication(splittedEventArray[0], splittedEventArray[1], splittedEventArray[3],
                                           splittedEventArray[4], splittedEventArray[5], splittedEventArray[6]))
     else:
-        print("Unknown event type in line")
+        # FIXME: Separate no-address comps from truly unkown cases.
+        print("Unknown event type in line, probably communication with no address")
         
 
 main()
