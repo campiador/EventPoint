@@ -6,6 +6,7 @@
 #TODO: Communications-->Edges in graph, do we wanna keep them? Because there
 #  are already available in the nodes.
 #TODO: Print out the content of the nodes
+#Question: Do we need edges among computation events as well?
 
 import networkx as nx;
 
@@ -105,6 +106,7 @@ main()
 #                     if (event2.getSyncStruct() == event2.getSyncStruct())
 #                         #Barrierfound between th1 and th2
 
+# TODO: Implement this code
 # define addCommunicationEdges():
 #     foreach node in eventGraph
 #         if node is computation
