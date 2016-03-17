@@ -111,3 +111,11 @@ main()
 #     foreach node in eventGraph
 #         if node is computation
 #             add one edge from producer to this node
+
+# TODO: Graph isomorphism
+#
+# is_isomorphic(G1, G2[, node_match, edge_match])	Returns True if the graphs G1 and G2 are isomorphic and False otherwise.
+# could_be_isomorphic(G1, G2)	Returns False if graphs are definitely not isomorphic.
+# fast_could_be_isomorphic(G1, G2)	Returns False if graphs are definitely not isomorphic.
+# faster_could_be_isomorphic(G1, G2)	Returns False if graphs are definitely not isomorphic.
+# https://networkx.github.io/documentation/latest/reference/algorithms.isomorphism.html
