@@ -21,9 +21,29 @@ eventGraph=nx.Graph();
 def main():
     parse_threads()#saves results in eventGraph
     print("finished parsing")
-    print(eventGraph.nodes())
+    # print(eventGraph.nodes())
     # eventGraph.nodes()
     # print(eventGraph.size())
+    # print(eventGraph.nodes().__getitem__(1))
+    e=Event(1, -1)
+    e.eventId='1 - 500'
+
+    e2=Event(1,-1)
+    e2.eventId='1 - 1'
+
+    print(eventGraph.number_of_nodes())
+
+    eventGraph.add_edge(e2, e)
+
+    # e = eventGraph.__getitem__(e)
+    print(eventGraph.number_of_nodes())
+    # eventGraph.remove_node(e)
+    print(eventGraph.number_of_nodes())
+    # print(eventGraph.nodes().__getitem__(1))
+    # eventGraph.add_edge(1,2)
+    print(eventGraph.edges())
+
+    # print("number of nodes is {}".format(eventGraph.number_of_nodes()))
 
 
 def parse_threads():
@@ -33,7 +53,7 @@ def parse_threads():
         count=0
         #line = f.readline()
         for line in f:
-            e = Event(line, 0);
+            # e = Event(line, 0);
             # print (e)
             count+=1
             # print("line {}:".format(count))
@@ -59,7 +79,7 @@ def createEvent(strEventLine):
         print ("SYNCHRONIZATION EVENT")
         eventGraph.add_node(Synchronization(splittedEventArray[0], splittedEventArray[1], splittedEventArray[3],
                                             splittedEventArray[5]))
-    elif ("#" in strEventLine):
+    elif ("#" in strEventLine) :
         print("COMMUNICATION EVENT")
         eventGraph.add_node(Communication(splittedEventArray[0], splittedEventArray[1], splittedEventArray[3],
                                           splittedEventArray[4], splittedEventArray[5], splittedEventArray[6]))
@@ -84,3 +104,8 @@ main()
 #                 if(event1.instanceOf(communication) && getPThreadCallType == 5)
 #                     if (event2.getSyncStruct() == event2.getSyncStruct())
 #                         #Barrierfound between th1 and th2
+
+# define addCommunicationEdges():
+#     foreach node in eventGraph
+#         if node is computation
+#             add one edge from producer to this node
